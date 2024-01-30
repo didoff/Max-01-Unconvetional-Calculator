@@ -31,19 +31,42 @@ function writeToLog(
 }
 
 // Calculates the result based on the operation button; calls operation description writer and adds operation to the operation log (logEntries array)
-function calculateResult(operation) {
-  if (
-    operation !== "ADD" &&
-    operation !== "SUBTRACT" &&
-    operation !== "MULTIPLY" &&
-    operation !== "DIVIDE"
-  ) {
-    return;
-  }
-  
+// function calculateResult(operation) {
+//   if (
+//     operation !== "ADD" &&
+//     operation !== "SUBTRACT" &&
+//     operation !== "MULTIPLY" &&
+//     operation !== "DIVIDE"
+//   ) {
+//     return;
+//   }
+
+//   const enteredNumber = getUserInput();
+//   const initialResult = currentResult;
+//   let mathOperator;
+//   if (operation === "ADD") {
+//     currentResult += enteredNumber;
+//     mathOperator = "+";
+//   } else if (operation === "SUBTRACT") {
+//     currentResult -= enteredNumber;
+//     mathOperator = "-";
+//   } else if (operation === "MULTIPLY") {
+//     currentResult *= enteredNumber;
+//     mathOperator = "*";
+//   } else if (operation === "DIVIDE") {
+//     currentResult /= enteredNumber;
+//     mathOperator = "/";
+//   }
+
+//   writeDescription(mathOperator, initialResult, enteredNumber);
+//   writeToLog(operation, initialResult, enteredNumber, currentResult);
+// }
+
+function calculate(operation) {
   const enteredNumber = getUserInput();
   const initialResult = currentResult;
   let mathOperator;
+
   if (operation === "ADD") {
     currentResult += enteredNumber;
     mathOperator = "+";
@@ -78,7 +101,7 @@ function divide() {
   calculateResult("DIVIDE");
 }
 
-addBtn.addEventListener("click", add);
-subtractBtn.addEventListener("click", subtract);
-multiplyBtn.addEventListener("click", multiply);
-divideBtn.addEventListener("click", divide);
+addBtn.addEventListener("click", calculate.bind(this, "ADD"));
+subtractBtn.addEventListener("click", calculate.bind(this, "SUBTRACT"));
+multiplyBtn.addEventListener("click", calculate.bind(this, "MULTIPLY"));
+divideBtn.addEventListener("click", calculate.bind(this, "DIVIDE"));
